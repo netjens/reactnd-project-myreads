@@ -6,6 +6,11 @@ class Book extends Component {
         bookshelf: 'currentlyReading'
     }
 
+    handleListChange = (e) => {
+        console.log(e)
+        this.setState({bookshelf: e.target.value})
+    }
+
     render() {
         const {backgroundImage,title,author } = this.props
         return (
@@ -13,7 +18,7 @@ class Book extends Component {
                 <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${backgroundImage})`}}></div>
                     <div className="book-shelf-changer">
-                        <select defaultValue={this.state.bookshelf}>
+                        <select onChange={this.handleListChange} defaultValue={this.state.bookshelf}>
                             <option value="none" disabled>Move to...</option>
                             <option value="currentlyReading">Currently Reading</option>
                             <option value="wantToRead">Want to Read</option>
