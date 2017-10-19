@@ -15,6 +15,7 @@ class BooksApp extends Component {
      BooksAPI.getAll().then((books) => {
       this.setState({books})
     })
+    console.log(BooksAPI.getAll())
   }
 
 

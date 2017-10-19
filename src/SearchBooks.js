@@ -3,15 +3,17 @@ import PropTypes from 'prop-types'
 import escapeRegExp from 'escape-string-regexp'
 import sortBy from 'sort-by'
 import { Link } from 'react-router-dom'
+import Book from './Book'
 
 
 class SearchBooks extends Component {
 
     render() {
+        const { books } = this.props
         return (
             <div className="search-books">
                 <div className="search-books-bar">
-                <Link className='close-search' to='/'>Close</Link>
+                    <Link className='close-search' to='/'>Close</Link>
                     <div className="search-books-input-wrapper">
                         {/*
                   NOTES: The search from BooksAPI is limited to a particular set of search terms.
@@ -26,7 +28,21 @@ class SearchBooks extends Component {
                     </div>
                 </div>
                 <div className="search-books-results">
-                    <ol className="books-grid"></ol>
+                    <ol className="books-grid">
+
+                        {books.map((book) => (
+                            <li key={book.id}>
+                                         <Book
+                                            backgroundImage={book.imageLinks.thumbnail} 
+                                            author={book.author}
+                                            title={book.title}/>
+                            </li>
+                        ))}
+
+
+
+
+                    </ol>
                 </div>
             </div>
         )
