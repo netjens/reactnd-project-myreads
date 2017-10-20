@@ -4,12 +4,28 @@ import escapeRegExp from 'escape-string-regexp'
 import sortBy from 'sort-by'
 import { Link } from 'react-router-dom'
 import Book from './Book'
+import * as BooksAPI from './BooksAPI'
 
 
 class SearchBooks extends Component {
 
+    state = {
+        query: '',
+        books: []
+    }
+
+    updateQuery = (query) => {
+        this.setState({ query: query.trim() })
+        BooksAPI.search(query, 10).then((books) => {
+            this.setState({ books })
+        })
+    }
+
+
+
     render() {
         const { books } = this.props
+        const { query } = this.state
         return (
             <div className="search-books">
                 <div className="search-books-bar">
@@ -23,8 +39,7 @@ class SearchBooks extends Component {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-                        <input type="text" placeholder="Search by title or author" />
-
+                        <input type="text" placeholder="Search by title or author" value={query} onChange={(event) => this.updateQuery(event.target.value)} />
                     </div>
                 </div>
                 <div className="search-books-results">
@@ -32,16 +47,12 @@ class SearchBooks extends Component {
 
                         {books.map((book) => (
                             <li key={book.id}>
-                                         <Book
-                                            backgroundImage={book.imageLinks.thumbnail} 
-                                            author={book.author}
-                                            title={book.title}/>
+                                <Book
+                                    backgroundImage={book.imageLinks.thumbnail}
+                                    author={book.author}
+                                    title={book.title} />
                             </li>
                         ))}
-
-
-
-
                     </ol>
                 </div>
             </div>
