@@ -22,9 +22,7 @@ class SearchBooks extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         const {query} = this.state
-        console.log('component did update')
         if (prevState.query !== query) {
-            console.log('update the state')
             if (query) {
                 BooksAPI
                     .search(query, 10)
