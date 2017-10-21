@@ -24,29 +24,24 @@ class BooksApp extends Component {
 
     BooksAPI.update(book, newShelf)
     const booksUpdate = this.state.books
-    console.log(booksUpdate)
-
+  
+    let updated = false
     for (let i = 0; i < booksUpdate.length; i++) {
       if (booksUpdate[i].id === book.id) {
         booksUpdate[i].shelf = newShelf
+        updated = true
         break
       }
+    }
+    if(updated ===false){
+      book.shelf = newShelf
+      booksUpdate.push(book)
+      
     }
     this.setState({books: booksUpdate})
 
   }
 
-  addToShelf = (book, newShelf) => {
-
-    BooksAPI.update(book, newShelf)
-    book.shelf = newShelf
-    const booksUpdate = this.state.books
-
-    booksUpdate.push(book)
-
-    this.setState({books: booksUpdate})
-
-  }
 
   render() {
     return (
@@ -58,7 +53,7 @@ class BooksApp extends Component {
 
         <Route
           path="/search"
-          render={({history}) => (<SearchBooks books={this.state.books} onChangeShelf={this.addToShelf}/>)}/>
+          render={({history}) => (<SearchBooks books={this.state.books} onChangeShelf={this.changeShelf}/>)}/>
       </div>
 
     )
