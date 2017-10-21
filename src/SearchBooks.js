@@ -67,7 +67,7 @@ class SearchBooks extends Component {
                             <li key={book.id}>
                                 <Book
                                     backgroundImage={book.imageLinks != undefined ? book.imageLinks.thumbnail : ''}
-                                    author={book.author}
+                                    authors={book.authors}
                                     title={book.title}/>
                             </li>
                         ))}

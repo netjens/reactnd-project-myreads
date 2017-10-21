@@ -12,7 +12,7 @@ class Book extends Component {
     }
 
     render() {
-        const {backgroundImage,title,author } = this.props
+        const {backgroundImage,title,authors } = this.props
         return (
             <div className="book">
                 <div className="book-top">
@@ -28,7 +28,7 @@ class Book extends Component {
                     </div>
                 </div>
                 <div className="book-title">{title}</div>
-                <div className="book-authors">{author}</div>
+                <div className="book-authors">{authors !== undefined ? authors.join(', '): ''}</div>
             </div>
 
 
