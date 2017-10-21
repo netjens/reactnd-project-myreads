@@ -25,7 +25,8 @@ class ListBooks extends Component {
                                             <Book
                                                 backgroundImage={book.imageLinks.thumbnail}
                                                 authors={book.authors}
-                                                title={book.title}/>
+                                                title={book.title}
+                                                shelf={book.shelf}/>
                                         </li>
                                     ))}
                                 </ol>
@@ -40,7 +41,8 @@ class ListBooks extends Component {
                                             <Book
                                                 backgroundImage={book.imageLinks.thumbnail}
                                                 authors={book.authors}
-                                                title={book.title}/>
+                                                title={book.title}
+                                                shelf={book.shelf}/>
                                         </li>
                                     ))}
 
@@ -56,7 +58,8 @@ class ListBooks extends Component {
                                             <Book
                                                 backgroundImage={book.imageLinks.thumbnail}
                                                 authors={book.authors}
-                                                title={book.title}/>
+                                                title={book.title}
+                                                shelf={book.shelf}/>
                                         </li>
                                     ))}
                                 </ol>
