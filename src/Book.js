@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 
 class Book extends Component {
 
-    state = {
-        bookshelf: 'currentlyReading'
-    }
 
     handleListChange = (e) => {
-        console.log(e)
-        this.setState({bookshelf: e.target.value})
+      
+        this.props.onChangeShelf(this.props.book, e.target.value)
+  
+
     }
 
     render() {
-        const {backgroundImage,title,authors,shelf } = this.props
+        const {title,authors,shelf} = this.props.book
+        const backgroundImage=this.props.book.imageLinks !== undefined ? this.props.book.imageLinks.thumbnail : ''
         return (
             <div className="book">
                 <div className="book-top">
