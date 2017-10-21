@@ -6,7 +6,7 @@ import Book from './Book'
 class ListBooks extends Component {
 
     render() {
-        const {books,onChangeShelf} = this.props
+        const {books, onChangeShelf} = this.props
 
         return (
 
@@ -22,10 +22,7 @@ class ListBooks extends Component {
                                 <ol className="books-grid">
                                     {books.filter((book) => (book.shelf === 'currentlyReading')).map((book) => (
                                         <li key={book.id}>
-                                            <Book
-                                      
-                                                onChangeShelf={onChangeShelf}
-                                                book={book}/>
+                                            <Book onChangeShelf={onChangeShelf} book={book}/>
                                         </li>
                                     ))}
                                 </ol>
@@ -37,10 +34,7 @@ class ListBooks extends Component {
                                 <ol className="books-grid">
                                     {books.filter((book) => (book.shelf === 'wantToRead')).map((book) => (
                                         <li key={book.id}>
-                                            <Book
-                                       
-                                                book={book}
-                                                onChangeShelf={onChangeShelf}/>
+                                            <Book book={book} onChangeShelf={onChangeShelf}/>
                                         </li>
                                     ))}
 
@@ -53,9 +47,7 @@ class ListBooks extends Component {
                                 <ol className="books-grid">
                                     {books.filter((book) => (book.shelf === 'read')).map((book) => (
                                         <li key={book.id}>
-                                            <Book
-                                                book={book}
-                                                onChangeShelf={onChangeShelf}/>
+                                            <Book book={book} onChangeShelf={onChangeShelf}/>
                                         </li>
                                     ))}
                                 </ol>

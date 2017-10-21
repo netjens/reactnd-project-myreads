@@ -17,7 +17,7 @@ class SearchBooks extends Component {
         this.setState({
             query: query.trim()
         })
-   
+
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -29,8 +29,8 @@ class SearchBooks extends Component {
                     .then((books) => {
                         this.setState({books})
                     })
-            }else{
-                this.setState({books : []})
+            } else {
+                this.setState({books: []})
             }
         }
     }
@@ -63,7 +63,7 @@ class SearchBooks extends Component {
 
                         {books.length > 0 && books.map((book) => (
                             <li key={book.id}>
-                                <Book book={book} onChangeShelf={this.props.onChangeShelf} />
+                                <Book book={book} onChangeShelf={this.props.onChangeShelf}/>
                             </li>
                         ))}
                     </ol>

@@ -21,13 +21,13 @@ class BooksApp extends Component {
   }
 
   changeShelf = (book, newShelf) => {
-    
+
     BooksAPI.update(book, newShelf)
     const booksUpdate = this.state.books
     console.log(booksUpdate)
-    
-   for (let i = 0; i < booksUpdate.length; i++) {
-      if(booksUpdate[i].id === book.id){
+
+    for (let i = 0; i < booksUpdate.length; i++) {
+      if (booksUpdate[i].id === book.id) {
         booksUpdate[i].shelf = newShelf
         break
       }
@@ -35,20 +35,18 @@ class BooksApp extends Component {
     this.setState({books: booksUpdate})
 
   }
-  
+
   addToShelf = (book, newShelf) => {
-    
+
     BooksAPI.update(book, newShelf)
     book.shelf = newShelf
     const booksUpdate = this.state.books
 
     booksUpdate.push(book)
-    
+
     this.setState({books: booksUpdate})
-  
+
   }
-
-
 
   render() {
     return (
