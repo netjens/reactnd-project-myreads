@@ -4,6 +4,10 @@ import {Link} from 'react-router-dom'
 import Book from './Book'
 
 class ListBooks extends Component {
+    static propTypes = {
+        books: PropTypes.array.isRequired,
+        onChangeShelf: PropTypes.func.isRequired
+      }
 
     render() {
         const {books, onChangeShelf} = this.props
