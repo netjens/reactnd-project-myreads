@@ -6,7 +6,7 @@ import Book from './Book'
 class ListBooks extends Component {
 
     render() {
-        const {books} = this.props
+        const {books,onChangeShelf} = this.props
 
         return (
 
@@ -23,10 +23,9 @@ class ListBooks extends Component {
                                     {books.filter((book) => (book.shelf === 'currentlyReading')).map((book) => (
                                         <li key={book.id}>
                                             <Book
-                                                backgroundImage={book.imageLinks.thumbnail}
-                                                authors={book.authors}
-                                                title={book.title}
-                                                shelf={book.shelf}/>
+                                      
+                                                onChangeShelf={onChangeShelf}
+                                                book={book}/>
                                         </li>
                                     ))}
                                 </ol>
@@ -39,10 +38,9 @@ class ListBooks extends Component {
                                     {books.filter((book) => (book.shelf === 'wantToRead')).map((book) => (
                                         <li key={book.id}>
                                             <Book
-                                                backgroundImage={book.imageLinks.thumbnail}
-                                                authors={book.authors}
-                                                title={book.title}
-                                                shelf={book.shelf}/>
+                                       
+                                                book={book}
+                                                onChangeShelf={onChangeShelf}/>
                                         </li>
                                     ))}
 
@@ -56,10 +54,8 @@ class ListBooks extends Component {
                                     {books.filter((book) => (book.shelf === 'read')).map((book) => (
                                         <li key={book.id}>
                                             <Book
-                                                backgroundImage={book.imageLinks.thumbnail}
-                                                authors={book.authors}
-                                                title={book.title}
-                                                shelf={book.shelf}/>
+                                                book={book}
+                                                onChangeShelf={onChangeShelf}/>
                                         </li>
                                     ))}
                                 </ol>

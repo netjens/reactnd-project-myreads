@@ -63,10 +63,7 @@ class SearchBooks extends Component {
 
                         {books.length > 0 && books.map((book) => (
                             <li key={book.id}>
-                                <Book
-                                    backgroundImage={book.imageLinks !== undefined ? book.imageLinks.thumbnail : ''}
-                                    authors={book.authors}
-                                    title={book.title}/>
+                                <Book book={book} />
                             </li>
                         ))}
                     </ol>
