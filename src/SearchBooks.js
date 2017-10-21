@@ -1,12 +1,14 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import escapeRegExp from 'escape-string-regexp'
 import sortBy from 'sort-by'
 import {Link} from 'react-router-dom'
 import Book from './Book'
 import * as BooksAPI from './BooksAPI'
 
 class SearchBooks extends Component {
+    static propTypes = {
+        onChangeShelf: PropTypes.func.isRequired
+      }
 
     state = {
         query: '',
@@ -28,8 +30,7 @@ class SearchBooks extends Component {
                     .search(query, 10)
                     .then((books) => {
                         for(const book of books){
-                            const bookFromBookshelf = this.props.books.filter(bookshelfBook => bookshelfBook.id == book.id)
-                            console.log(bookFromBookshelf.length)
+                            const bookFromBookshelf = this.props.books.filter(bookshelfBook => bookshelfBook.id === book.id)
                             if(bookFromBookshelf.length===1){
                                 console.log("set shelf from book " + book.title + " to " + bookFromBookshelf[0].shelf)
                                 book.shelf = bookFromBookshelf[0].shelf
@@ -49,6 +50,7 @@ class SearchBooks extends Component {
     render() {
 
         const {query, books} = this.state
+        books.sort(sortBy('title'))
         return (
             <div className="search-books">
                 <div className="search-books-bar">
