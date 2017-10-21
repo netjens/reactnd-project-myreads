@@ -35,6 +35,18 @@ class BooksApp extends Component {
     this.setState({books: booksUpdate})
 
   }
+  
+  addToShelf = (book, newShelf) => {
+    
+    BooksAPI.update(book, newShelf)
+    book.shelf = newShelf
+    const booksUpdate = this.state.books
+
+    booksUpdate.push(book)
+    
+    this.setState({books: booksUpdate})
+  
+  }
 
 
 
@@ -48,7 +60,7 @@ class BooksApp extends Component {
 
         <Route
           path="/search"
-          render={({history}) => (<SearchBooks books={this.state.books}/>)}/>
+          render={({history}) => (<SearchBooks books={this.state.books} onChangeShelf={this.addToShelf}/>)}/>
       </div>
 
     )
