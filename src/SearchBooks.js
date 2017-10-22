@@ -8,7 +8,7 @@ import * as BooksAPI from './BooksAPI'
 class SearchBooks extends Component {
     static propTypes = {
         onChangeShelf: PropTypes.func.isRequired
-      }
+    }
 
     state = {
         query: '',
@@ -29,16 +29,23 @@ class SearchBooks extends Component {
                 BooksAPI
                     .search(query, 10)
                     .then((books) => {
-                        for(const book of books){
-                            const bookFromBookshelf = this.props.books.filter(bookshelfBook => bookshelfBook.id === book.id)
-                            if(bookFromBookshelf.length===1){
-                                console.log("set shelf from book " + book.title + " to " + bookFromBookshelf[0].shelf)
-                                book.shelf = bookFromBookshelf[0].shelf
-                            }else{
-                                book.shelf = 'none'
+                        if (books.error) {
+                            this.setState({books: []});
+                        } else {
+                            for (const book of books) {
+                                const bookFromBookshelf = this
+                                    .props
+                                    .books
+                                    .filter(bookshelfBook => bookshelfBook.id === book.id)
+                                if (bookFromBookshelf.length === 1) {
+                                    console.log("set shelf from book " + book.title + " to " + bookFromBookshelf[0].shelf)
+                                    book.shelf = bookFromBookshelf[0].shelf
+                                } else {
+                                    book.shelf = 'none'
+                                }
                             }
+                            this.setState({books})
                         }
-                        this.setState({books})
                     })
 
             } else {
