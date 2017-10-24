@@ -4,6 +4,7 @@ import sortBy from 'sort-by'
 import {Link} from 'react-router-dom'
 import Book from './Book'
 import * as BooksAPI from './BooksAPI'
+import {Debounce} from 'react-throttle';
 
 class SearchBooks extends Component {
     static propTypes = {
@@ -70,16 +71,16 @@ class SearchBooks extends Component {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-                        <input
-                            type="text"
-                            placeholder="Search by title or author"
-                            value={query}
-                            onChange={(event) => this.updateQuery(event.target.value)}/>
+                        <Debounce time="300" handler="onChange">
+                            <input
+                                type="text"
+                                placeholder="Search by title or author"
+                                onChange={(event) => this.updateQuery(event.target.value)}/>
+                        </Debounce>
                     </div>
                 </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
-
                         {books.length > 0 && books.map((book) => (
                             <li key={book.id}>
                                 <Book book={book} onChangeShelf={this.props.onChangeShelf}/>
