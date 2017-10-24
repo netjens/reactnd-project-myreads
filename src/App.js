@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {Route} from 'react-router-dom'
+import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import SearchBooks from './SearchBooks'
 import ListBooks from './ListBooks'
@@ -15,31 +15,17 @@ class BooksApp extends Component {
     BooksAPI
       .getAll()
       .then((books) => {
-        this.setState({books})
+        this.setState({ books })
 
       })
   }
 
   changeShelf = (book, newShelf) => {
 
-    BooksAPI.update(book, newShelf)
-    const booksUpdate = this.state.books
-  
-    let updated = false
-    for (let i = 0; i < booksUpdate.length; i++) {
-      if (booksUpdate[i].id === book.id) {
-        booksUpdate[i].shelf = newShelf
-        updated = true
-        break
-      }
-    }
-    if(updated ===false){
+    BooksAPI.update(book, newShelf).then((response) => {
       book.shelf = newShelf
-      booksUpdate.push(book)
-      
-    }
-    this.setState({books: booksUpdate})
-
+      this.setState({ books: this.state.books.filter((b) => b.id !== book.id).concat(book) });
+    })
   }
 
 
@@ -49,11 +35,11 @@ class BooksApp extends Component {
         <Route
           exact
           path="/"
-          render={() => (<ListBooks onChangeShelf={this.changeShelf} books={this.state.books}/>)}/>
+          render={() => (<ListBooks onChangeShelf={this.changeShelf} books={this.state.books} />)} />
 
         <Route
           path="/search"
-          render={({history}) => (<SearchBooks books={this.state.books} onChangeShelf={this.changeShelf}/>)}/>
+          render={({ history }) => (<SearchBooks books={this.state.books} onChangeShelf={this.changeShelf} />)} />
       </div>
 
     )
