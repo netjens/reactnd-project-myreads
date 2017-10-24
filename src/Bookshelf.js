@@ -1,7 +1,10 @@
 import React from 'react';
 import Book from './Book'
+import PropTypes from 'prop-types'
 
-const Bookshelf = (props) => (
+const Bookshelf = (props) => {
+
+    return(
 
     <div className="bookshelf">
         <h2 className="bookshelf-title">{props.shelf.title}</h2>
@@ -19,6 +22,11 @@ const Bookshelf = (props) => (
         </div>
     </div>
 
-);
+)}
+
+Bookshelf.propTypes = {
+    shelf: PropTypes.object.isRequired,
+    onChangeShelf: PropTypes.func.isRequired
+}
 
 export default Bookshelf
