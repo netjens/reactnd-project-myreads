@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import SHELF from './ShelfConsants'
 
@@ -7,7 +7,7 @@ class Book extends Component {
     static propTypes = {
         book: PropTypes.object.isRequired,
         onChangeShelf: PropTypes.func.isRequired
-      }
+    }
 
     handleListChange = (e) => {
         this
@@ -17,7 +17,7 @@ class Book extends Component {
     }
 
     render() {
-        const {title, authors, shelf} = this.props.book
+        const { title, authors, shelf } = this.props.book
         const backgroundImage = this.props.book.imageLinks !== undefined
             ? this.props.book.imageLinks.thumbnail
             : ''
@@ -27,8 +27,8 @@ class Book extends Component {
                     <div
                         className="book-cover"
                         style={{
-                        backgroundImage: `url(${backgroundImage})`
-                    }}></div>
+                            backgroundImage: `url(${backgroundImage})`
+                        }}></div>
                     <div className="book-shelf-changer">
                         <select onChange={this.handleListChange} defaultValue={shelf}>
                             <option value="none" disabled>Move to...</option>
@@ -41,8 +41,8 @@ class Book extends Component {
                 </div>
                 <div className="book-title">{title}</div>
                 <div className="book-authors">{authors !== undefined
-                        ? authors.join(', ')
-                        : ''}</div>
+                    ? authors.join(', ')
+                    : ''}</div>
             </div>
 
         )
