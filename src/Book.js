@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types'
+import SHELF from './ShelfConsants'
 
 class Book extends Component {
 
@@ -33,10 +34,10 @@ class Book extends Component {
                     <div className="book-shelf-changer">
                         <select onChange={this.handleListChange} defaultValue={shelf}>
                             <option value="none" disabled>Move to...</option>
-                            <option value="currentlyReading">Currently Reading</option>
-                            <option value="wantToRead">Want to Read</option>
-                            <option value="read">Read</option>
-                            <option value="none">None</option>
+                            <option value={SHELF.CURRENTLY_READING.value}>Currently Reading</option>
+                            <option value={SHELF.WANT_TO_READ.value}>Want to Read</option>
+                            <option value={SHELF.READ.value}>Read</option>
+                            <option value={SHELF.NONE.value}>None</option>
                         </select>
                     </div>
                 </div>

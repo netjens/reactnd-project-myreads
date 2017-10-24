@@ -1,13 +1,14 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
-import Book from './Book'
+import Bookshelf from './Bookshelf'
+import SHELF from './ShelfConsants'
 
 class ListBooks extends Component {
     static propTypes = {
         books: PropTypes.array.isRequired,
         onChangeShelf: PropTypes.func.isRequired
-      }
+    }
 
     render() {
         const {books, onChangeShelf} = this.props
@@ -20,49 +21,14 @@ class ListBooks extends Component {
                 </div>
                 <div className="list-books-content">
                     <div>
-                        <div className="bookshelf">
-                            <h2 className="bookshelf-title">Currently Reading</h2>
-                            <div className="bookshelf-books">
-                                <ol className="books-grid">
-                                    {books.filter((book) => (book.shelf === 'currentlyReading')).map((book) => (
-                                        <li key={book.id}>
-                                            <Book onChangeShelf={onChangeShelf} book={book}/>
-                                        </li>
-                                    ))}
-                                </ol>
-                            </div>
-                        </div>
-                        <div className="bookshelf">
-                            <h2 className="bookshelf-title">Want to Read</h2>
-                            <div className="bookshelf-books">
-                                <ol className="books-grid">
-                                    {books.filter((book) => (book.shelf === 'wantToRead')).map((book) => (
-                                        <li key={book.id}>
-                                            <Book book={book} onChangeShelf={onChangeShelf}/>
-                                        </li>
-                                    ))}
-
-                                </ol>
-                            </div>
-                        </div>
-                        <div className="bookshelf">
-                            <h2 className="bookshelf-title">Read</h2>
-                            <div className="bookshelf-books">
-                                <ol className="books-grid">
-                                    {books.filter((book) => (book.shelf === 'read')).map((book) => (
-                                        <li key={book.id}>
-                                            <Book book={book} onChangeShelf={onChangeShelf}/>
-                                        </li>
-                                    ))}
-                                </ol>
-                            </div>
-                        </div>
+                        <Bookshelf books={books} onChangeShelf={onChangeShelf} shelf={SHELF.CURRENTLY_READING} />
+                        <Bookshelf books={books} onChangeShelf={onChangeShelf} shelf={SHELF.WANT_TO_READ} />
+                        <Bookshelf books={books} onChangeShelf={onChangeShelf} shelf={SHELF.READ} />
                     </div>
                 </div>
                 <div className="open-search">
                     <Link to='/search'>Add a book</Link>
                 </div>
-
             </div>
         )
 

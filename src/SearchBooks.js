@@ -38,7 +38,6 @@ class SearchBooks extends Component {
                                     .books
                                     .filter(bookshelfBook => bookshelfBook.id === book.id)
                                 if (bookFromBookshelf.length === 1) {
-                                    console.log("set shelf from book " + book.title + " to " + bookFromBookshelf[0].shelf)
                                     book.shelf = bookFromBookshelf[0].shelf
                                 } else {
                                     book.shelf = 'none'
