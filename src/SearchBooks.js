@@ -56,7 +56,7 @@ class SearchBooks extends Component {
 
     render() {
 
-        const {query, books} = this.state
+        const {books} = this.state
         books.sort(sortBy('title'))
         return (
             <div className="search-books">
